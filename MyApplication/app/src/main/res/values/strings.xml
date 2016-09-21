@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Email client 1.0</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="wrong_email">The email is wrong!</string>
+    <string name="wrong_password">The password is wrong!</string>
+    <string name="title_activity_nav_draw">NavDrawActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="Inbox">Inbox</string>
+    <string name="Sent">Sent mail</string>
+    <string name="Settings">Settings</string>
+    <string name="Addition">Addition</string>
+    <string name="NewMail">New mail</string>
+    <string name="Exit">Exit</string>
+    <string name="example_email">blablabla@mail.com</string>
+    <string name="time">00:00</string>
+    <string name="subject">Subject</string>
+    <string name="from">From</string>
+    <string name="ReadingData">Getting incoming mails</string>
+    <string name="FetchingMails">Loading mails...</string>
+    <string name="UnableSender">Unable to get the sender</string>
+    <string name="UnableSubject">Unable to get the subject</string>
+    <string name="UnableGetTime">Unable to get the time of send</string>
+    <string name="ErrorGetMails">Error to getting mails!\nPlease, check of settings and try again.</string>
+    <string name="LoginAs">"Login as "</string>
+    <string name="cancel">Cancel</string>
+
+</resources>
