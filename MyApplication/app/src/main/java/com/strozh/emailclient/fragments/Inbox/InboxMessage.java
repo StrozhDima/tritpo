@@ -1,6 +1,7 @@
 package com.strozh.emailclient.fragments.Inbox;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
 
 /**
@@ -15,9 +16,9 @@ public class InboxMessage implements Serializable {
     private String content;
     private boolean isNew;
     private int msgId;
-    private ArrayList<String> attachments;
+    private ArrayList<URI> attachments;
 
-    public InboxMessage(int msgId, String subject, String from, String to, String dateSent, String content, boolean isNew, ArrayList<String> attachments) {
+    public InboxMessage(int msgId, String subject, String from, String to, String dateSent, String content, boolean isNew, ArrayList<URI> attachments) {
         this.subject = subject;
         this.from = from;
         this.to = to;
@@ -90,11 +91,11 @@ public class InboxMessage implements Serializable {
         this.msgId = msgId;
     }
 
-    public ArrayList<String> getAttachments() {
+    public ArrayList<URI> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(ArrayList<String> attachments) {
-        this.attachments = new ArrayList<String>(attachments);
+    public void setAttachments(ArrayList<URI> attachments) {
+        this.attachments = new ArrayList<>(attachments);
     }
 }

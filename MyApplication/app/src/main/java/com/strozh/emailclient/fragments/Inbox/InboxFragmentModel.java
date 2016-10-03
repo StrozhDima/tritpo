@@ -11,5 +11,7 @@ import javax.mail.*;
 public interface InboxFragmentModel {
 
     void receiveMessage() throws MessagingException, IOException;
+
     void saveMessagesInFile(LinkedList<InboxMessage> messages);
+
 }

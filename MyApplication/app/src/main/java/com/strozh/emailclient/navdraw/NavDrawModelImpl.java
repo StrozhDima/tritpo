@@ -18,4 +18,14 @@ public class NavDrawModelImpl implements NavDrawModel {
     public String getUserName() {
         return sharedPreferences.getString("email", "");
     }
+
+    @Override
+    public void setPassword(String password) {
+        sharedPreferences.edit().putString("email", password);
+    }
+
+    @Override
+    public void setEmail(String email) {
+        sharedPreferences.edit().putString("email", email);
+    }
 }

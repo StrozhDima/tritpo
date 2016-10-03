@@ -1,10 +1,13 @@
 package com.strozh.emailclient.fragments.Inbox;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
 import com.strozh.emailclient.Auth;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,11 +19,13 @@ import java.io.ObjectOutputStream;
 import java.io.OptionalDataException;
 import java.io.OutputStream;
 import java.io.StreamCorruptedException;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Properties;
+
 import javax.activation.CommandMap;
 import javax.activation.MailcapCommandMap;
 import javax.mail.Flags;
@@ -40,7 +45,7 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
 
     private final SharedPreferences sharedPreferences;
     private LinkedList<InboxMessage> listMessages = null;
-    private ArrayList<String> attachments = new ArrayList<>();
+    private ArrayList<URI> attachments = new ArrayList<>();
     private final Context context;
 
     public InboxFragmentModelImpl(Context context) {
@@ -148,7 +153,7 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
                 result = result + "\n" + message.getContent();
             } else if (message.getContentType().contains("text/html")) {
                 String html = (String) message.getContent();
-                result = result + "\n" + org.jsoup.Jsoup.parse(html).text();
+                result = result + "\n" + org.jsoup.Jsoup.parse(html);
             } else if (message.getContent() instanceof MimeMultipart) {
                 result = result + getTextFromMimeMultipart((MimeMultipart) message.getContent());
             }
@@ -182,7 +187,7 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
         return result;
     }
 
-    private String saveFile(String filename, InputStream input) {
+    private URI saveFile(String filename, InputStream input) {
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/EmailClient/");
         File file = null;
         Log.d("EmailClient", "saveFile: input = " + input);
@@ -203,7 +208,7 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
             input.close();
             os.close();
             Log.d("EmailClient", "saveFile: Absolut path of file :" + file.getAbsolutePath() + " Size: " + file.getUsableSpace());
-            return file.getAbsolutePath();
+            return file.toURI();
 
         } catch (FileNotFoundException e) {
             Log.e("EmailClient", "saveFile: FileOutputStream not created", e);
@@ -212,7 +217,7 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
             Log.e("EmailClient", "saveFile: InputStream not found", e);
 
         }
-        return file.getAbsolutePath();
+        return file.toURI();
     }
 
     public LinkedList<InboxMessage> getListMessages() {

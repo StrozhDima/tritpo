@@ -3,7 +3,10 @@ package com.strozh.emailclient.navdraw;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -23,9 +26,11 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import com.strozh.emailclient.R;
 import com.strozh.emailclient.fragments.Inbox.InboxFragmentActivity;
+import com.strozh.emailclient.login.LoginActivity;
 
 public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> implements NavDrawView, NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> 
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         setTitle("Email client 1.0");
@@ -89,7 +94,13 @@ public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> 
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_sign_out) {
+            getApplicationContext().deleteFile("messages.ser");
+            Intent intent = new Intent(this, LoginActivity.class);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            sharedPreferences.edit().putBoolean("isLogin", false).commit();
+            startActivity(intent);
+            this.finish();
             return true;
         }
 

@@ -1,7 +1,9 @@
 package com.strozh.emailclient.fragments.Inbox;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +19,9 @@ import com.hannesdorfmann.mosby.mvp.MvpFragment;
 import com.strozh.emailclient.R;
 
 import java.util.LinkedList;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
 
 public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxFragmentPresenter> implements InboxFragmentView {
 
@@ -55,7 +60,8 @@ public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxF
     }
 
     @Override
-    public void showListView(LinkedList<InboxMessage> messages) {
+    public void showListView(final LinkedList<InboxMessage> messages) {
+        //LinkedList<InboxMessage> messageLinkedList = new LinkedList<>(messages);
         //создаем view
         final ListView listView = (ListView) getView().findViewById(R.id.mail_list);
         try {
@@ -69,7 +75,7 @@ public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxF
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: создать метод showSingleMail();
+                showSingleMail(getContext(), messages.get(position));
             }
         });
 
@@ -88,6 +94,19 @@ public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxF
     @Override
     public void errorGetMails() {
         Toast.makeText(getContext(), R.string.ErrorGetMails, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showSingleMail(Context context, InboxMessage message) {
+        Intent intent = new Intent(context, SingleMail.class);
+        try {
+            intent.putExtra("EXTRA_FROM", message.getFrom());
+            intent.putExtra("EXTRA_SUBJECT", message.getSubject());
+            intent.putExtra("EXTRA_CONTENT", message.getContent());
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @NonNull

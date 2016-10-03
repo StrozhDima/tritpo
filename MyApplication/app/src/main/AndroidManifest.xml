@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.strozh.emailclient.login.LoginActivity"
+            android:name=".login.LoginActivity"
             android:label="@string/app_name"
             android:noHistory="true">
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,9 +29,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.strozh.emailclient.navdraw.NavDrawActivity"
+            android:name=".navdraw.NavDrawActivity"
             android:label="@string/title_activity_nav_draw"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".fragments.Inbox.SingleMail" />
     </application>
 
 </manifest>

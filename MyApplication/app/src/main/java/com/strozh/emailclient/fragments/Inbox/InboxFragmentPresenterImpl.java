@@ -45,19 +45,19 @@ public class InboxFragmentPresenterImpl extends MvpBasePresenter<InboxFragmentVi
 
         @Override
         protected LinkedList<InboxMessage> doInBackground(Void... params) {
-            //if (inboxFragmentModel.loadMessagesInFile() == null) {
+            if (inboxFragmentModel.loadMessagesInFile() == null) {
                 try {
                     inboxFragmentModel.receiveMessage();
-                    //inboxFragmentModel.saveMessagesInFile(inboxFragmentModel.getListMessages());
+                    inboxFragmentModel.saveMessagesInFile(inboxFragmentModel.getListMessages());
                 } catch (MessagingException e) {
                     Log.e("EmailClient", "doInBackground: Internet connection not found!", e);
                 } catch (IOException e) {
                     Log.e("EmailClient", "doInBackground: Internet connection not found!", e);
                 }
-            //}
+            }
             Log.d("EmailClient", "Отработал метод doInBackground");
-            //return inboxFragmentModel.loadMessagesInFile();
-            return inboxFragmentModel.getListMessages();
+            return inboxFragmentModel.loadMessagesInFile();
+            //return inboxFragmentModel.getListMessages();
         }
 
         @Override

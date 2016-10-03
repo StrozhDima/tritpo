@@ -23,6 +23,7 @@
             android:id="@+id/mail_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/time"/>
 
             <TextView
@@ -30,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:maxLines="1"
                 android:text="@string/from"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:layout_width="wrap_content" />
 
             <TextView

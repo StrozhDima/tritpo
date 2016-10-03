@@ -15,7 +15,6 @@ public class NavDrawPresenterImpl extends MvpBasePresenter<NavDrawView> implemen
         navDrawModel = new NavDrawModelImpl(context);
     }
 
-
     @Override
     public String getUserName() {
         return navDrawModel.getUserName();

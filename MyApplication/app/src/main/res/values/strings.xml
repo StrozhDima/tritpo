@@ -6,6 +6,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_out">Sign out</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -16,7 +17,6 @@
     <string name="wrong_email">The email is wrong!</string>
     <string name="wrong_password">The password is wrong!</string>
     <string name="title_activity_nav_draw">NavDrawActivity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -28,17 +28,22 @@
     <string name="Addition">Addition</string>
     <string name="NewMail">New mail</string>
     <string name="Exit">Exit</string>
-    <string name="example_email">blablabla@mail.com</string>
+    <string name="example_email">your_email@mail.com</string>
     <string name="time">00:00</string>
     <string name="subject">Subject</string>
     <string name="from">From</string>
     <string name="ReadingData">Getting incoming mails</string>
-    <string name="FetchingMails">Loading mails...</string>
+    <string name="FetchingMails">Loading mails…</string>
     <string name="UnableSender">Unable to get the sender</string>
     <string name="UnableSubject">Unable to get the subject</string>
     <string name="UnableGetTime">Unable to get the time of send</string>
-    <string name="ErrorGetMails">Error to getting mails!\nPlease, check of settings and try again.</string>
-    <string name="LoginAs">"Login as "</string>
+    <string name="ErrorGetMails">Error to getting mails!\nPlease, check the settings and try again.</string>
+    <string name="LoginAs">"Signed in as "</string>
     <string name="cancel">Cancel</string>
+    <string name="content">Content</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="pref_account">Set account</string>
+    <string name="example_password">Password to the email with no spaces</string>
+    <string name="prefEditEmail">editEmailPref</string>
 
 </resources>
