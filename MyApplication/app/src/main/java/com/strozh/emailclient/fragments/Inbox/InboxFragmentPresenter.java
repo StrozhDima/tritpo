@@ -1,5 +1,7 @@
 package com.strozh.emailclient.fragments.Inbox;
 
+import android.content.Context;
+
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 
 /**
@@ -7,5 +9,6 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
  */
 public interface InboxFragmentPresenter extends MvpPresenter<InboxFragmentView> {
     void loadData();
+    void refreshData(Context context);
     void cancelLoadData();
 }

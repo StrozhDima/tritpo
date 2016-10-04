@@ -95,16 +95,20 @@ public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> 
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_sign_out) {
-            getApplicationContext().deleteFile("messages.ser");
-            Intent intent = new Intent(this, LoginActivity.class);
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            sharedPreferences.edit().putBoolean("isLogin", false).commit();
-            startActivity(intent);
-            this.finish();
+            singOut();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void singOut() {
+        getApplicationContext().deleteFile("messages.ser");
+        Intent intent = new Intent(this, LoginActivity.class);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().putBoolean("isLogin", false).commit();
+        startActivity(intent);
+        this.finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

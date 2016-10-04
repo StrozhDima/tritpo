@@ -31,6 +31,13 @@ public class InboxFragmentPresenterImpl extends MvpBasePresenter<InboxFragmentVi
     }
 
     @Override
+    public void refreshData(Context context) {
+        context.deleteFile("messages.ser");
+        loadData();
+        Log.d("EmailClient", "refreshData() выполнилось");
+    }
+
+    @Override
     public void cancelLoadData() {
         loadDataTask.cancel(true);
     }

@@ -10,4 +10,5 @@ import com.hannesdorfmann.mosby.mvp.MvpView;
 public interface NavDrawView extends MvpView {
     void initFAB();
     void setUserNameInHeader(NavigationView navigationView, String userNameInHeader);
+    void singOut();
 }

@@ -34,6 +34,7 @@
     <string name="from">From</string>
     <string name="ReadingData">Getting incoming mails</string>
     <string name="FetchingMails">Loading mails…</string>
+    <string name="RefreshListMails">Refresh mails…</string>
     <string name="UnableSender">Unable to get the sender</string>
     <string name="UnableSubject">Unable to get the subject</string>
     <string name="UnableGetTime">Unable to get the time of send</string>
@@ -45,5 +46,6 @@
     <string name="pref_account">Set account</string>
     <string name="example_password">Password to the email with no spaces</string>
     <string name="prefEditEmail">editEmailPref</string>
+    <string name="tapToRefresh">Tap to refresh</string>
 
 </resources>

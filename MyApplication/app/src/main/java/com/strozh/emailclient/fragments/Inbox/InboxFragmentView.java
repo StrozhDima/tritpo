@@ -1,6 +1,7 @@
 package com.strozh.emailclient.fragments.Inbox;
 
 import android.content.Context;
+import android.view.View;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 import java.util.LinkedList;
@@ -12,4 +13,5 @@ public interface InboxFragmentView extends MvpView {
     void showListView(LinkedList<InboxMessage> linkedList);
     void errorGetMails();
     void showSingleMail(Context context, InboxMessage message);
+    void refreshListView(View view);
 }

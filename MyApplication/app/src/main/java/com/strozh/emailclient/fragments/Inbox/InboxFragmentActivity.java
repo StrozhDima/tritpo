@@ -13,15 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 import com.strozh.emailclient.R;
 
 import java.util.LinkedList;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
 
 public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxFragmentPresenter> implements InboxFragmentView {
 
@@ -32,14 +30,15 @@ public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxF
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_inbox, container, false);
+        refreshListView(view);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //TODO: ЗАВТРА ДОДЕЛАТЬ ЗДЕСЬ listView.setAdapter
         getPresenter().loadData();
+
     }
 
     @Override
@@ -107,6 +106,18 @@ public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxF
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void refreshListView(final View view) {
+        TextView refresh = (TextView) view.findViewById(R.id.tv_tap_refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPresenter().refreshData(view.getContext());
+                Toast.makeText(getContext(), R.string.RefreshListMails, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @NonNull

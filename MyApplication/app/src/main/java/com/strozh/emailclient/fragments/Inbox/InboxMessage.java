@@ -29,6 +29,27 @@ public class InboxMessage implements Serializable {
         this.attachments = attachments;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InboxMessage that = (InboxMessage) o;
+
+        if (subject != null ? !subject.equals(that.subject) : that.subject != null) return false;
+        if (from != null ? !from.equals(that.from) : that.from != null) return false;
+        return !(dateSent != null ? !dateSent.equals(that.dateSent) : that.dateSent != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = subject != null ? subject.hashCode() : 0;
+        result = 31 * result + (from != null ? from.hashCode() : 0);
+        result = 31 * result + (dateSent != null ? dateSent.hashCode() : 0);
+        return result;
+    }
+
     public String getSubject() {
         if (subject == null) subject = "";
         return subject;
@@ -83,7 +104,7 @@ public class InboxMessage implements Serializable {
     }
 
     public int getMsgId() {
-        if (msgId < 0 ) msgId = 0;
+        if (msgId < 0) msgId = 0;
         return msgId;
     }
 

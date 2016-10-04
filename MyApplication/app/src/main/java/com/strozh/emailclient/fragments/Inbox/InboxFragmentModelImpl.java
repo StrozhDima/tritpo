@@ -137,6 +137,7 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
                 else sentDate = "-/-";
                 if (textMessage == null)
                     textMessage = "-/-";
+                if(!(listMessages.equals(new InboxMessage(messageNumber, subject, from, null, sentDate, textMessage, false, this.attachments))))
                 listMessages.add(new InboxMessage(messageNumber, subject, from, null, sentDate, textMessage, false, this.attachments));
 
                 Log.d("EmailClient", "getPart: Subject: " + subject);
@@ -229,6 +230,7 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
 
     public void saveMessagesInFile(LinkedList<InboxMessage> messages) {
         try {
+            context.deleteFile("messages.ser");
             FileOutputStream fos = context.openFileOutput("messages.ser", Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
             os.writeObject(messages);
