@@ -5,7 +5,9 @@ package com.strozh.emailclient.navdraw;
  */
 public interface NavDrawModel {
     String getUserName();
+
     void setPassword(String password);
+
     void setEmail(String email);
 
 }

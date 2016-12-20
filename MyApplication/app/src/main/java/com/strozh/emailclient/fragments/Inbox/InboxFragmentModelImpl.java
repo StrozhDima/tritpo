@@ -47,10 +47,14 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
     private LinkedList<InboxMessage> listMessages = null;
     private ArrayList<URI> attachments = new ArrayList<>();
     private final Context context;
+    private String folderName;
 
-    public InboxFragmentModelImpl(Context context) {
+    public InboxFragmentModelImpl(Context context, String folderName) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.context = context;
+        if (folderName != null)
+            this.folderName = folderName;
+        else this.folderName = "INBOX";
     }
 
     @Override
@@ -91,13 +95,16 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
         Log.d("EmailClient", "до store.connect()");
         store.connect();
         Log.d("EmailClient", "после соединения");
-        Folder inbox = store.getFolder("INBOX");
-        inbox.open(Folder.READ_WRITE);
+        Folder folder = store.getFolder(folderName);
+        if (!folder.exists()) {
+            folder.create(Folder.HOLDS_MESSAGES);
+        }
+        folder.open(Folder.READ_WRITE);
         Log.d("EmailClient", "после соединения getFolder , open");
-        Message[] messages = inbox.getMessages();/*search(new FlagTerm(new Flags(Flags.Flag.SEEN), true));*/
+        Message[] messages = folder.getMessages();/*search(new FlagTerm(new Flags(Flags.Flag.SEEN), true));*/
         listMessages = getPart(messages);
-        inbox.setFlags(messages, new Flags(Flags.Flag.SEEN), true);
-        inbox.close(false);
+        folder.setFlags(messages, new Flags(Flags.Flag.SEEN), true);
+        folder.close(false);
         store.close();
         Log.d("EmailClient", "отработал метод receiveMessage в модели Inbox, вернувший " + listMessages.size());
     }
@@ -229,13 +236,19 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
     }
 
     public void saveMessagesInFile(LinkedList<InboxMessage> messages) {
+        String fileName = "messages.ser";
         try {
-            context.deleteFile("messages.ser");
-            FileOutputStream fos = context.openFileOutput("messages.ser", Context.MODE_PRIVATE);
-            ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(messages);
-            os.close();
-            fos.close();
+            if (folderName == "INBOX")
+                fileName = "messages.ser";
+            else if (folderName == "Sent")
+                fileName = "messages_sent.ser";
+                context.deleteFile(fileName);
+                FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                os.writeObject(messages);
+                os.close();
+                fos.close();
+
             Log.d("EmailClient", "saveMessagesInFile: File messages.ser was saved");
         } catch (FileNotFoundException e) {
             Log.e("EmailClient", "saveMessagesInFile: File messages.ser didn't save", e);
@@ -246,8 +259,14 @@ public class InboxFragmentModelImpl implements InboxFragmentModel {
 
     public LinkedList<InboxMessage> loadMessagesInFile() {
         LinkedList<InboxMessage> file = null;
+        String fileName = "messages.ser";
         try {
-            FileInputStream fis = context.openFileInput("messages.ser");
+            if (folderName == "INBOX")
+                fileName = "messages.ser";
+            else if (folderName == "Sent")
+                fileName = "messages_sent.ser";
+
+            FileInputStream fis = context.openFileInput(fileName);
             ObjectInputStream is = new ObjectInputStream(fis);
             file = (LinkedList<InboxMessage>) is.readObject();
             is.close();

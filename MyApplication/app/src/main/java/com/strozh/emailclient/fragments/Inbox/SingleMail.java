@@ -1,10 +1,12 @@
 package com.strozh.emailclient.fragments.Inbox;
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
+
 import com.strozh.emailclient.R;
 
 public class SingleMail extends AppCompatActivity {
@@ -38,7 +40,6 @@ public class SingleMail extends AppCompatActivity {
 
         TextView textViewBody = (TextView) findViewById(R.id.tv_content);
         if (textViewBody != null) {
-
             textViewBody.setText(Html.fromHtml(content));
         }
     }

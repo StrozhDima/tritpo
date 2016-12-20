@@ -18,9 +18,11 @@ public class InboxFragmentPresenterImpl extends MvpBasePresenter<InboxFragmentVi
 
     private final InboxFragmentModelImpl inboxFragmentModel;
     private LoadDataTask loadDataTask;
+    private String folderName;
 
-    public InboxFragmentPresenterImpl(Context context) {
-        inboxFragmentModel = new InboxFragmentModelImpl(context);
+    public InboxFragmentPresenterImpl(Context context, String folderName) {
+        this.folderName = folderName;
+        inboxFragmentModel = new InboxFragmentModelImpl(context, folderName);
     }
 
     @Override
@@ -32,7 +34,10 @@ public class InboxFragmentPresenterImpl extends MvpBasePresenter<InboxFragmentVi
 
     @Override
     public void refreshData(Context context) {
-        context.deleteFile("messages.ser");
+        if (folderName == "INBOX")
+            context.deleteFile("messages.ser");
+        else if (folderName == "Sent")
+            context.deleteFile("messages_sent.ser");
         loadData();
         Log.d("EmailClient", "refreshData() выполнилось");
     }

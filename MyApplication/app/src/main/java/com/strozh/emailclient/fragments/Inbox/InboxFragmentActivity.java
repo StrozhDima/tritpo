@@ -24,6 +24,11 @@ import java.util.LinkedList;
 public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxFragmentPresenter> implements InboxFragmentView {
 
     private ProgressDialog waitingDialog;
+    private String foderName;
+
+    public InboxFragmentActivity(String folder) {
+        this.foderName = folder;
+    }
 
     @Nullable
     @Override
@@ -124,6 +129,6 @@ public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxF
     @Override
     public InboxFragmentPresenter createPresenter() {
         Log.d("EmailClient", "Отработал метод createPresenter");
-        return new InboxFragmentPresenterImpl(getActivity().getApplicationContext());
+        return new InboxFragmentPresenterImpl(getActivity().getApplicationContext(), this.foderName);
     }
 }

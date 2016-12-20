@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import com.strozh.emailclient.R;
 import com.strozh.emailclient.fragments.Inbox.InboxFragmentActivity;
+import com.strozh.emailclient.fragments.Inbox.Send.SendFragment;
 import com.strozh.emailclient.login.LoginActivity;
 
 public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> implements NavDrawView, NavigationView.OnNavigationItemSelectedListener {
@@ -104,6 +105,7 @@ public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> 
 
     public void singOut() {
         getApplicationContext().deleteFile("messages.ser");
+        getApplicationContext().deleteFile("messages_sent.ser");
         Intent intent = new Intent(this, LoginActivity.class);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.edit().putBoolean("isLogin", false).commit();
@@ -117,13 +119,13 @@ public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> 
         Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.nav_inbox:
-                fragment = new InboxFragmentActivity();
+                fragment = new InboxFragmentActivity("INBOX");
                 break;
             case R.id.nav_sent:
-                //TODO: make sent fragment
+                fragment = new InboxFragmentActivity("Sent");
                 break;
             case R.id.nav_NewMail:
-                //TODO: make new mail fragment
+                fragment = new SendFragment();
                 break;
             case R.id.nav_exit:
                 //TODO: make function of exit
@@ -177,7 +179,3 @@ public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> 
         }
     }
 }
-
-
-
-
