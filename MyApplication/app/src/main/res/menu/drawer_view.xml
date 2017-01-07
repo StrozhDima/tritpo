@@ -4,12 +4,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_inbox"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@android:drawable/stat_sys_download"
             android:title="@string/Inbox" />
         <item
             android:id="@+id/nav_sent"
-            android:icon="@android:drawable/ic_menu_gallery"
+            android:icon="@android:drawable/stat_sys_upload"
             android:title="@string/Sent" />
+        <item
+            android:id="@+id/nav_NewMail"
+            android:icon="@android:drawable/ic_input_add"
+            android:title="@string/NewMail" />
 
     </group>
 
@@ -17,12 +21,8 @@
         android:title="@string/Addition">
         <menu>
             <item
-                android:id="@+id/nav_NewMail"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="@string/NewMail" />
-            <item
                 android:id="@+id/nav_exit"
-                android:icon="@android:drawable/ic_menu_manage"
+                android:icon="@android:drawable/ic_input_delete"
                 android:title="@string/Exit" />
 
         </menu>

@@ -66,11 +66,6 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @Override
     public void showLoginForm() {
         setContentView(R.layout.activity_login);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                .permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         // Set up the login form.
         e_t_email = (EditText) findViewById(R.id.email);
         e_t_password = (EditText) findViewById(R.id.password);
