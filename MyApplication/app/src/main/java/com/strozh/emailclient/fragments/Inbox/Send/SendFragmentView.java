@@ -11,6 +11,8 @@ public interface SendFragmentView extends MvpView {
     String getRecipient();
     String getSubject();
     String getContentMessage();
+    String getAttachment();
+    void chooseFile();
     void sendMessage();
     void initializeForm(View view);
     void errorRecipient();
