@@ -124,7 +124,10 @@ public class NavDrawActivity extends MvpActivity<NavDrawView, NavDrawPresenter> 
                 fragment = new SendFragmentActivity();
                 break;
             case R.id.nav_exit:
-                //TODO: make function of exit
+                //Close program
+                Intent intent = new Intent(NavDrawActivity.this, NavDrawActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                finish();
                 break;
         }
 
