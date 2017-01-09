@@ -26,6 +26,9 @@ public class InboxFragmentActivity extends MvpFragment<InboxFragmentView, InboxF
     private ProgressDialog waitingDialog;
     private String folderName;
 
+    public InboxFragmentActivity() {
+    }
+
     public InboxFragmentActivity(String folder) {
         this.folderName = folder;
     }

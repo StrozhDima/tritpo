@@ -73,10 +73,6 @@ public class InboxMessage implements Serializable {
         return dateSent;
     }
 
-    public void setDateSent(String dateSent) {
-        this.dateSent = dateSent;
-    }
-
     public String getContent() {
         if (content == null) content = "";
         return content;
@@ -101,22 +97,5 @@ public class InboxMessage implements Serializable {
 
     public void setNew(boolean aNew) {
         isNew = aNew;
-    }
-
-    public int getMsgId() {
-        if (msgId < 0) msgId = 0;
-        return msgId;
-    }
-
-    public void setMsgId(int msgId) {
-        this.msgId = msgId;
-    }
-
-    public ArrayList<URI> getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(ArrayList<URI> attachments) {
-        this.attachments = new ArrayList<>(attachments);
     }
 }
