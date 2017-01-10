@@ -2,7 +2,6 @@ package com.strozh.emailclient.login;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.view.View;
